@@ -1,0 +1,10 @@
+{
+    "numeros":[1,2,3,4,5,6,7,8],
+    "frutas": ["maça","banana","abacate"],
+    "quiz":[
+        {"p":"qual seu nome?", "r":"Neilon"},
+        {"p":"qual seu time?", "r":"francana"}
+    ]
+
+}
+
