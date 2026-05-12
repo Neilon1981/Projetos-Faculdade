@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Security.Policy;
@@ -18,11 +18,33 @@ namespace Projeto_POO.Scripts.Plataform
             if (string.IsNullOrEmpty(this.RunPath))
                 return;
 
-            Process.Start(new ProcessStartInfo
+            if (this.RunPath.EndsWith(".sfc") || this.RunPath.EndsWith(".smc"))
             {
-                FileName = RunPath,
-                UseShellExecute = true
-            });
+                string emulatorPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Emulators\SNES\snes9x-x64.exe");
+                string romPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, this.RunPath);
+
+                if (System.IO.File.Exists(emulatorPath))
+                {
+                    Process.Start(new ProcessStartInfo
+                    {
+                        FileName = emulatorPath,
+                        Arguments = $"\"{romPath}\"",
+                        UseShellExecute = true
+                    });
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("Emulador não encontrado na pasta Emulators\\SNES.");
+                }
+            }
+            else
+            {
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = RunPath,
+                    UseShellExecute = true
+                });
+            }
         }
 
         public override void Uninstall()
