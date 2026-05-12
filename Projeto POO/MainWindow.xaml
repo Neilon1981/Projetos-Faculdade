@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projeto_POO"
+        xmlns:fa="clr-namespace:FontAwesome.WPF;assembly=FontAwesome.WPF"
         mc:Ignorable="d"
         Title="GameHub"
         Height="720"
@@ -30,14 +31,62 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel>
-                <TextBlock Text="Classic Games" FontSize="34" FontWeight="Bold" Foreground="White"/>
-                <TextBlock Text="Um acervo de jogos antigos" Margin="0,4,0,0" FontSize="14" Foreground="#909090"/>
+
+                <TextBlock Text="Classic Games"
+               FontSize="34"
+               FontWeight="Bold"
+               Foreground="White"/>
+
+                <TextBlock Text="Um acervo de jogos antigos"
+               Margin="0,4,0,0"
+               FontSize="14"
+               Foreground="#909090"/>
+
+                <!-- FILTROS -->
+                <StackPanel Orientation="Horizontal"
+                Margin="0,18,0,0">
+
+                    <!-- TODOS -->
+                    <Button x:Name="AllGamesButton"
+                Content="Todos os Jogos"
+                Click="AllGames_Click"
+                Height="38"
+                Padding="18,0"
+                Margin="0,0,10,0"
+                Background="#2A2A2A"
+                Foreground="White"
+                BorderThickness="0"
+                Cursor="Hand"/>
+
+                    <!-- FAVORITOS -->
+                    <Button x:Name="FavoritesButton"
+                Click="Favorites_Click"
+                Height="38"
+                Padding="18,0"
+                Background="#2A2A2A"
+                Foreground="White"
+                BorderThickness="0"
+                Cursor="Hand">
+
+                        <StackPanel Orientation="Horizontal">
+
+                            <fa:ImageAwesome Icon="Star"
+                                 Width="14"
+                                 Height="14"
+                                 Foreground="#F59E0B"
+                                 Margin="0,0,8,0"/>
+
+                            <TextBlock Text="Favoritos"
+                           VerticalAlignment="Center"/>
+
+                        </StackPanel>
+
+                    </Button>
+
+                </StackPanel>
+
             </StackPanel>
 
-            <Grid Grid.Column="1">
-                <ComboBox Name="Videogames" SelectionChanged="Videogames_SelectionChanged" VerticalContentAlignment="Center" FontSize="17" FontFamily="Segoe UI Semibold" Margin="13"/>
-            </Grid>
-            
             <!-- PESQUISA -->
             <Border Grid.Column="2" Height="42" CornerRadius="10" Background="#1F1F1F">
                 <Grid>
@@ -63,8 +112,7 @@
 
         <!-- LISTA DINÂMICA -->
         <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto">
-            <ItemsControl ItemsSource="{Binding Games}">
-
+            <ItemsControl x:Name="GameList" ItemsSource="{Binding Games}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel Orientation="Horizontal"/>
@@ -75,16 +123,67 @@
                     <DataTemplate>
 
                         <!-- CARD -->
-                        <!-- CARD -->
                         <Border Width="360" Margin="10" CornerRadius="18" Background="#1E1E1E">
 
                             <StackPanel>
 
                                 <!-- CAPA -->
-                                <Border Height="241" CornerRadius="18,18,0,0" ClipToBounds="True">
+                                <Grid Height="241">
 
-                                    <Image Source="{Binding CoverPath}" Stretch="Fill"/>
-                                </Border>
+                                    <Border CornerRadius="18,18,0,0"
+            ClipToBounds="True">
+
+                                        <Image Source="{Binding CoverPath}"
+               Stretch="Fill"/>
+                                    </Border>
+
+                                    <!-- BOTÃO FAVORITO -->
+                                    <Button Width="42"
+            Height="42"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Margin="10"
+            Background="#66000000"
+            BorderThickness="0"
+            Click="Favorite_Click"
+            Cursor="Hand"
+            Panel.ZIndex="10">
+
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border Background="{TemplateBinding Background}"
+                        CornerRadius="21">
+                                                    <ContentPresenter HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Button.Template>
+
+                                        <fa:ImageAwesome Width="20"
+                         Height="20">
+
+                                            <fa:ImageAwesome.Style>
+                                                <Style TargetType="fa:ImageAwesome">
+
+                                                    <Setter Property="Icon" Value="StarOutline"/>
+                                                    <Setter Property="Foreground" Value="White"/>
+
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Favorite}" Value="True">
+                                                            <Setter Property="Icon" Value="Star"/>
+                                                            <Setter Property="Foreground" Value="#F59E0B"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+
+                                                </Style>
+                                            </fa:ImageAwesome.Style>
+
+                                        </fa:ImageAwesome>
+
+                                    </Button>
+
+                                </Grid>
+
 
                                 <!-- INFO -->
                                 <StackPanel Margin="14">
