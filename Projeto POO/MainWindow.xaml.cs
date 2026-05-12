@@ -1,4 +1,4 @@
-﻿using Projeto_POO.Scripts;
+using Projeto_POO.Scripts;
 using Projeto_POO.Scripts.Plataform;
 using System.Collections.ObjectModel;
 using System.Net.NetworkInformation;
@@ -125,6 +125,16 @@ namespace Projeto_POO
 
                 SaveFavorites();
 
+                RefreshUI();
+            }
+        }
+        private void Star_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is FrameworkElement element &&
+                element.DataContext is Game game &&
+                int.TryParse(element.Tag?.ToString(), out int rating))
+            {
+                game.Rating = rating;
                 RefreshUI();
             }
         }

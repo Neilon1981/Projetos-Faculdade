@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -14,6 +14,7 @@ namespace Projeto_POO.Scripts
         public string Description { get; set; } = string.Empty;
         public double Size {  get; set; }
         public bool Installed { get; set; }
+        public int Rating { get; set; }
 
         public abstract void Run();
         public abstract void Uninstall();
