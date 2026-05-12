@@ -50,6 +50,28 @@ namespace Projeto_POO
                 CoverPath = "UI/Images/Games/SNES/supermarioworld.jpg",
             });
 
+            Games.Add(new SuperNintendo
+            {
+                Name = "International Superstar Soccer Deluxe",
+                Category = "Esportes",
+                Description = "Um dos jogos de futebol mais famosos do Super Nintendo, com narração empolgante, vários times internacionais e jogabilidade fluida.",
+                RunPath = @"Games\SNES\International Superstar Soccer Deluxe (USA).sfc",
+                Size = 2.0,
+                CoverPath = "UI/Images/Games/SNES/issdeluxe.jpg",
+                Installed = true
+            });
+
+            Games.Add(new SuperNintendo
+            {
+                Name = "Mortal Kombat 3",
+                Category = "Luta",
+                Description = "Clássico jogo de luta da franquia Mortal Kombat, com novos Fatalities, personagens icônicos e muita ação no Super Nintendo.",
+                RunPath = @"Games\SNES\Mortal Kombat 3 (USA).sfc",
+                Size = 4.0,
+                CoverPath = "UI/Images/Games/SNES/mk3.jpg",
+                Installed = true
+            });
+
             Games.Add(new Playstation2
             {
                 Name = "Grand Theft Auto III",
