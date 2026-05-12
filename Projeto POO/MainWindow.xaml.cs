@@ -186,6 +186,17 @@ namespace Projeto_POO
             RefreshUI();
         }
 
+        private void SortRating_Click(object sender, RoutedEventArgs e)
+        {
+            var sortedList = Games.OrderByDescending(x => x.Rating).ToList();
+            Games.Clear();
+            foreach (var game in sortedList)
+            {
+                Games.Add(game);
+            }
+            RefreshUI();
+        }
+
         private void SaveFavorites()
         {
             //Monte uma estrutura aplicando conceitos em JSON para salvar a lista de favoritos
