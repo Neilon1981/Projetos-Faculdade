@@ -54,10 +54,17 @@
                         </StackPanel>
                     </Button>
                     <!-- CLASSIFICAR POR AVALIAÇÃO -->
-                    <Button x:Name="SortRatingButton" Click="SortRating_Click" Height="38" Padding="18,0" Background="#2A2A2A" Foreground="White" BorderThickness="0" Cursor="Hand">
+                    <Button x:Name="SortRatingButton" Click="SortRating_Click" Height="38" Padding="18,0" Margin="0,0,10,0" Background="#2A2A2A" Foreground="White" BorderThickness="0" Cursor="Hand">
                         <StackPanel Orientation="Horizontal">
                             <fa:ImageAwesome Icon="SortAmountDesc" Width="14" Height="14" Foreground="White" Margin="0,0,8,0"/>
                             <TextBlock Text="Classificar por Avaliação" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <!-- MAIS JOGADOS -->
+                    <Button x:Name="SortMostPlayedButton" Click="SortMostPlayed_Click" Height="38" Padding="18,0" Background="#2A2A2A" Foreground="White" BorderThickness="0" Cursor="Hand">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:ImageAwesome Icon="Trophy" Width="14" Height="14" Foreground="#FBBF24" Margin="0,0,8,0"/>
+                            <TextBlock Text="Mais Jogados" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Button>
                 </StackPanel>
@@ -315,7 +322,10 @@
                                             </ToolTip>
                                         </TextBlock.ToolTip>
                                     </TextBlock>
-                                    <TextBlock Text="{Binding Size}" Grid.Row="3" Foreground="#4ADE80" FontWeight="Bold"/>
+                                    <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding Size}" Foreground="#4ADE80" FontWeight="Bold" Margin="0,0,15,0"/>
+                                        <TextBlock Text="{Binding PlayCount, StringFormat=Jogadas: {0}}" Foreground="#60A5FA" FontWeight="Bold"/>
+                                    </StackPanel>
                                     <!-- BOTÕES -->
                                     <StackPanel Grid.Row="5" Margin="0,16,0,0">
 

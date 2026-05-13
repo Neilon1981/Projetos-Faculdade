@@ -44,7 +44,9 @@ namespace Projeto_POO
             if (sender is FrameworkElement element &&
                 element.DataContext is Game game)
             {
+                game.PlayCount++;
                 game.Run();
+                RefreshUI();
             }
         }
         private void InstallGame_Click(object sender, RoutedEventArgs e)
@@ -139,6 +141,16 @@ namespace Projeto_POO
         private void SortRating_Click(object sender, RoutedEventArgs e)
         {
             var sortedList = Games.OrderByDescending(x => x.Rating).ToList();
+            Games.Clear();
+            foreach (var game in sortedList)
+            {
+                Games.Add(game);
+            }
+            RefreshUI();
+        }
+        private void SortMostPlayed_Click(object sender, RoutedEventArgs e)
+        {
+            var sortedList = Games.OrderByDescending(x => x.PlayCount).ToList();
             Games.Clear();
             foreach (var game in sortedList)
             {
