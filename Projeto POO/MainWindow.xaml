@@ -7,7 +7,7 @@
         xmlns:fa="clr-namespace:FontAwesome.WPF;assembly=FontAwesome.WPF"
         mc:Ignorable="d"
         Title="GameHub"
-        Height="720"
+        Height="780"
         Width="1200"
         Background="#141414"
         ResizeMode="CanMinimize"
@@ -43,76 +43,25 @@
                Foreground="#909090"/>
 
                 <!-- FILTROS -->
-                <StackPanel Orientation="Horizontal"
-                Margin="0,18,0,0">
-
+                <StackPanel Orientation="Horizontal" Margin="0,18,0,0">
                     <!-- TODOS -->
-                    <Button x:Name="AllGamesButton"
-                Content="Todos os Jogos"
-                Click="AllGames_Click"
-                Height="38"
-                Padding="18,0"
-                Margin="0,0,10,0"
-                Background="#2A2A2A"
-                Foreground="White"
-                BorderThickness="0"
-                Cursor="Hand"/>
-
+                    <Button x:Name="AllGamesButton" Content="Todos os Jogos" Click="AllGames_Click" Height="38" Padding="18,0" Margin="0,0,10,0" Background="#2A2A2A" Foreground="White" BorderThickness="0" Cursor="Hand"/>
                     <!-- FAVORITOS -->
-                    <Button x:Name="FavoritesButton"
-                Click="Favorites_Click"
-                Height="38"
-                Padding="18,0"
-                Margin="0,0,10,0"
-                Background="#2A2A2A"
-                Foreground="White"
-                BorderThickness="0"
-                Cursor="Hand">
-
+                    <Button x:Name="FavoritesButton" Click="Favorites_Click" Height="38" Padding="18,0" Margin="0,0,10,0" Background="#2A2A2A" Foreground="White" BorderThickness="0" Cursor="Hand">
                         <StackPanel Orientation="Horizontal">
-
-                            <fa:ImageAwesome Icon="Heart"
-                                 Width="14"
-                                 Height="14"
-                                 Foreground="#EF4444"
-                                 Margin="0,0,8,0"/>
-
-                            <TextBlock Text="Favoritos"
-                           VerticalAlignment="Center"/>
-
+                            <fa:ImageAwesome Icon="Heart" Width="14" Height="14" Foreground="#EF4444" Margin="0,0,8,0"/>
+                            <TextBlock Text="Favoritos" VerticalAlignment="Center"/>
                         </StackPanel>
-
                     </Button>
-
                     <!-- CLASSIFICAR POR AVALIAÇÃO -->
-                    <Button x:Name="SortRatingButton"
-                Click="SortRating_Click"
-                Height="38"
-                Padding="18,0"
-                Background="#2A2A2A"
-                Foreground="White"
-                BorderThickness="0"
-                Cursor="Hand">
-
+                    <Button x:Name="SortRatingButton" Click="SortRating_Click" Height="38" Padding="18,0" Background="#2A2A2A" Foreground="White" BorderThickness="0" Cursor="Hand">
                         <StackPanel Orientation="Horizontal">
-
-                            <fa:ImageAwesome Icon="SortAmountDesc"
-                                 Width="14"
-                                 Height="14"
-                                 Foreground="White"
-                                 Margin="0,0,8,0"/>
-
-                            <TextBlock Text="Classificar por Avaliação"
-                           VerticalAlignment="Center"/>
-
+                            <fa:ImageAwesome Icon="SortAmountDesc" Width="14" Height="14" Foreground="White" Margin="0,0,8,0"/>
+                            <TextBlock Text="Classificar por Avaliação" VerticalAlignment="Center"/>
                         </StackPanel>
-
                     </Button>
-
                 </StackPanel>
-
             </StackPanel>
-
             <!-- PESQUISA -->
             <Border Grid.Column="2" Height="42" CornerRadius="10" Background="#1F1F1F">
                 <Grid>
@@ -155,90 +104,154 @@
 
                                 <!-- CAPA -->
                                 <Grid Height="241">
-
-                                    <Border CornerRadius="18,18,0,0"
-            ClipToBounds="True">
-
-                                        <Image Source="{Binding CoverPath}"
-               Stretch="Fill"/>
+                                    <Border CornerRadius="18,18,0,0" ClipToBounds="True">
+                                        <Image Source="{Binding CoverPath}" Stretch="Fill"/>
                                     </Border>
-
                                     <!-- ESTRELAS E FAVORITO -->
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10" Panel.ZIndex="10">
-
                                         <!-- ESTRELAS -->
-                                        <Border Background="#66000000" CornerRadius="21" Margin="0,0,8,0" Padding="15,0">
+                                        <Border Background="#88000000" CornerRadius="21" Margin="0,0,8,0" Padding="15,0">
                                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                                 <Button Click="Star_Click" Tag="1" Background="Transparent" BorderThickness="0" Cursor="Hand">
-                                                    <Button.Template><ControlTemplate TargetType="Button"><ContentPresenter/></ControlTemplate></Button.Template>
+                                                    <Button.Template>
+                                                        <ControlTemplate TargetType="Button">
+                                                            <ContentPresenter/>
+                                                        </ControlTemplate>
+                                                    </Button.Template>
                                                     <fa:ImageAwesome Width="18" Height="18" Margin="2">
                                                         <fa:ImageAwesome.Style>
                                                             <Style TargetType="fa:ImageAwesome">
-                                                                <Setter Property="Icon" Value="StarOutline"/><Setter Property="Foreground" Value="White"/>
+                                                                <Setter Property="Icon" Value="StarOutline"/>
+                                                                <Setter Property="Foreground" Value="White"/>
                                                                 <Style.Triggers>
-                                                                    <DataTrigger Binding="{Binding Rating}" Value="1"><Setter Property="Icon" Value="Star"/><Setter Property="Foreground" Value="#F59E0B"/></DataTrigger>
-                                                                    <DataTrigger Binding="{Binding Rating}" Value="2"><Setter Property="Icon" Value="Star"/><Setter Property="Foreground" Value="#F59E0B"/></DataTrigger>
-                                                                    <DataTrigger Binding="{Binding Rating}" Value="3"><Setter Property="Icon" Value="Star"/><Setter Property="Foreground" Value="#F59E0B"/></DataTrigger>
-                                                                    <DataTrigger Binding="{Binding Rating}" Value="4"><Setter Property="Icon" Value="Star"/><Setter Property="Foreground" Value="#F59E0B"/></DataTrigger>
-                                                                    <DataTrigger Binding="{Binding Rating}" Value="5"><Setter Property="Icon" Value="Star"/><Setter Property="Foreground" Value="#F59E0B"/></DataTrigger>
+                                                                    <DataTrigger Binding="{Binding Rating}" Value="1">
+                                                                        <Setter Property="Icon" Value="Star"/>
+                                                                        <Setter Property="Foreground" Value="#F59E0B"/>
+                                                                    </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding Rating}" Value="2">
+                                                                        <Setter Property="Icon" Value="Star"/>
+                                                                        <Setter Property="Foreground" Value="#F59E0B"/>
+                                                                    </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding Rating}" Value="3">
+                                                                        <Setter Property="Icon" Value="Star"/>
+                                                                        <Setter Property="Foreground" Value="#F59E0B"/>
+                                                                    </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding Rating}" Value="4">
+                                                                        <Setter Property="Icon" Value="Star"/>
+                                                                        <Setter Property="Foreground" Value="#F59E0B"/>
+                                                                    </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding Rating}" Value="5">
+                                                                        <Setter Property="Icon" Value="Star"/>
+                                                                        <Setter Property="Foreground" Value="#F59E0B"/>
+                                                                    </DataTrigger>
                                                                 </Style.Triggers>
                                                             </Style>
                                                         </fa:ImageAwesome.Style>
                                                     </fa:ImageAwesome>
                                                 </Button>
                                                 <Button Click="Star_Click" Tag="2" Background="Transparent" BorderThickness="0" Cursor="Hand">
-                                                    <Button.Template><ControlTemplate TargetType="Button"><ContentPresenter/></ControlTemplate></Button.Template>
+                                                    <Button.Template>
+                                                        <ControlTemplate TargetType="Button">
+                                                            <ContentPresenter/>
+                                                        </ControlTemplate>
+                                                    </Button.Template>
                                                     <fa:ImageAwesome Width="18" Height="18" Margin="2">
                                                         <fa:ImageAwesome.Style>
                                                             <Style TargetType="fa:ImageAwesome">
-                                                                <Setter Property="Icon" Value="StarOutline"/><Setter Property="Foreground" Value="White"/>
+                                                                <Setter Property="Icon" Value="StarOutline"/>
+                                                                <Setter Property="Foreground" Value="White"/>
                                                                 <Style.Triggers>
-                                                                    <DataTrigger Binding="{Binding Rating}" Value="2"><Setter Property="Icon" Value="Star"/><Setter Property="Foreground" Value="#F59E0B"/></DataTrigger>
-                                                                    <DataTrigger Binding="{Binding Rating}" Value="3"><Setter Property="Icon" Value="Star"/><Setter Property="Foreground" Value="#F59E0B"/></DataTrigger>
-                                                                    <DataTrigger Binding="{Binding Rating}" Value="4"><Setter Property="Icon" Value="Star"/><Setter Property="Foreground" Value="#F59E0B"/></DataTrigger>
-                                                                    <DataTrigger Binding="{Binding Rating}" Value="5"><Setter Property="Icon" Value="Star"/><Setter Property="Foreground" Value="#F59E0B"/></DataTrigger>
+                                                                    <DataTrigger Binding="{Binding Rating}" Value="2">
+                                                                        <Setter Property="Icon" Value="Star"/>
+                                                                        <Setter Property="Foreground" Value="#F59E0B"/>
+                                                                    </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding Rating}" Value="3">
+                                                                        <Setter Property="Icon" Value="Star"/>
+                                                                        <Setter Property="Foreground" Value="#F59E0B"/>
+                                                                    </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding Rating}" Value="4">
+                                                                        <Setter Property="Icon" Value="Star"/>
+                                                                        <Setter Property="Foreground" Value="#F59E0B"/>
+                                                                    </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding Rating}" Value="5">
+                                                                        <Setter Property="Icon" Value="Star"/>
+                                                                        <Setter Property="Foreground" Value="#F59E0B"/>
+                                                                    </DataTrigger>
                                                                 </Style.Triggers>
                                                             </Style>
                                                         </fa:ImageAwesome.Style>
                                                     </fa:ImageAwesome>
                                                 </Button>
                                                 <Button Click="Star_Click" Tag="3" Background="Transparent" BorderThickness="0" Cursor="Hand">
-                                                    <Button.Template><ControlTemplate TargetType="Button"><ContentPresenter/></ControlTemplate></Button.Template>
+                                                    <Button.Template>
+                                                        <ControlTemplate TargetType="Button">
+                                                            <ContentPresenter/>
+                                                        </ControlTemplate>
+                                                    </Button.Template>
                                                     <fa:ImageAwesome Width="18" Height="18" Margin="2">
                                                         <fa:ImageAwesome.Style>
                                                             <Style TargetType="fa:ImageAwesome">
-                                                                <Setter Property="Icon" Value="StarOutline"/><Setter Property="Foreground" Value="White"/>
+                                                                <Setter Property="Icon" Value="StarOutline"/>
+                                                                <Setter Property="Foreground" Value="White"/>
                                                                 <Style.Triggers>
-                                                                    <DataTrigger Binding="{Binding Rating}" Value="3"><Setter Property="Icon" Value="Star"/><Setter Property="Foreground" Value="#F59E0B"/></DataTrigger>
-                                                                    <DataTrigger Binding="{Binding Rating}" Value="4"><Setter Property="Icon" Value="Star"/><Setter Property="Foreground" Value="#F59E0B"/></DataTrigger>
-                                                                    <DataTrigger Binding="{Binding Rating}" Value="5"><Setter Property="Icon" Value="Star"/><Setter Property="Foreground" Value="#F59E0B"/></DataTrigger>
+                                                                    <DataTrigger Binding="{Binding Rating}" Value="3">
+                                                                        <Setter Property="Icon" Value="Star"/>
+                                                                        <Setter Property="Foreground" Value="#F59E0B"/>
+                                                                    </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding Rating}" Value="4">
+                                                                        <Setter Property="Icon" Value="Star"/>
+                                                                        <Setter Property="Foreground" Value="#F59E0B"/>
+                                                                    </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding Rating}" Value="5">
+                                                                        <Setter Property="Icon" Value="Star"/>
+                                                                        <Setter Property="Foreground" Value="#F59E0B"/>
+                                                                    </DataTrigger>
                                                                 </Style.Triggers>
                                                             </Style>
                                                         </fa:ImageAwesome.Style>
                                                     </fa:ImageAwesome>
                                                 </Button>
                                                 <Button Click="Star_Click" Tag="4" Background="Transparent" BorderThickness="0" Cursor="Hand">
-                                                    <Button.Template><ControlTemplate TargetType="Button"><ContentPresenter/></ControlTemplate></Button.Template>
+                                                    <Button.Template>
+                                                        <ControlTemplate TargetType="Button">
+                                                            <ContentPresenter/>
+                                                        </ControlTemplate>
+                                                    </Button.Template>
                                                     <fa:ImageAwesome Width="18" Height="18" Margin="2">
                                                         <fa:ImageAwesome.Style>
                                                             <Style TargetType="fa:ImageAwesome">
-                                                                <Setter Property="Icon" Value="StarOutline"/><Setter Property="Foreground" Value="White"/>
+                                                                <Setter Property="Icon" Value="StarOutline"/>
+                                                                <Setter Property="Foreground" Value="White"/>
                                                                 <Style.Triggers>
-                                                                    <DataTrigger Binding="{Binding Rating}" Value="4"><Setter Property="Icon" Value="Star"/><Setter Property="Foreground" Value="#F59E0B"/></DataTrigger>
-                                                                    <DataTrigger Binding="{Binding Rating}" Value="5"><Setter Property="Icon" Value="Star"/><Setter Property="Foreground" Value="#F59E0B"/></DataTrigger>
+                                                                    <DataTrigger Binding="{Binding Rating}" Value="4">
+                                                                        <Setter Property="Icon" Value="Star"/>
+                                                                        <Setter Property="Foreground" Value="#F59E0B"/>
+                                                                    </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding Rating}" Value="5">
+                                                                        <Setter Property="Icon" Value="Star"/>
+                                                                        <Setter Property="Foreground" Value="#F59E0B"/>
+                                                                    </DataTrigger>
                                                                 </Style.Triggers>
                                                             </Style>
                                                         </fa:ImageAwesome.Style>
                                                     </fa:ImageAwesome>
                                                 </Button>
                                                 <Button Click="Star_Click" Tag="5" Background="Transparent" BorderThickness="0" Cursor="Hand">
-                                                    <Button.Template><ControlTemplate TargetType="Button"><ContentPresenter/></ControlTemplate></Button.Template>
+                                                    <Button.Template>
+                                                        <ControlTemplate TargetType="Button">
+                                                            <ContentPresenter/>
+                                                        </ControlTemplate>
+                                                    </Button.Template>
                                                     <fa:ImageAwesome Width="18" Height="18" Margin="2">
                                                         <fa:ImageAwesome.Style>
                                                             <Style TargetType="fa:ImageAwesome">
-                                                                <Setter Property="Icon" Value="StarOutline"/><Setter Property="Foreground" Value="White"/>
+                                                                <Setter Property="Icon" Value="StarOutline"/>
+                                                                <Setter Property="Foreground" Value="White"/>
                                                                 <Style.Triggers>
-                                                                    <DataTrigger Binding="{Binding Rating}" Value="5"><Setter Property="Icon" Value="Star"/><Setter Property="Foreground" Value="#F59E0B"/></DataTrigger>
+                                                                    <DataTrigger Binding="{Binding Rating}" Value="5">
+                                                                        <Setter Property="Icon" Value="Star"/>
+                                                                        <Setter Property="Foreground" Value="#F59E0B"/>
+                                                                    </DataTrigger>
                                                                 </Style.Triggers>
                                                             </Style>
                                                         </fa:ImageAwesome.Style>
@@ -246,21 +259,12 @@
                                                 </Button>
                                             </StackPanel>
                                         </Border>
-
                                         <!-- BOTÃO FAVORITO -->
-                                        <Button Width="42"
-                Height="42"
-                Background="#66000000"
-                BorderThickness="0"
-                Click="Favorite_Click"
-                Cursor="Hand">
-
+                                        <Button Width="42" Height="42" Background="#66000000" BorderThickness="0" Click="Favorite_Click" Cursor="Hand">
                                             <Button.Template>
                                                 <ControlTemplate TargetType="Button">
-                                                    <Border Background="{TemplateBinding Background}"
-                            CornerRadius="21">
-                                                        <ContentPresenter HorizontalAlignment="Center"
-                                          VerticalAlignment="Center"/>
+                                                    <Border Background="{TemplateBinding Background}" CornerRadius="21">
+                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                     </Border>
                                                 </ControlTemplate>
                                             </Button.Template>
@@ -287,34 +291,33 @@
                                             </fa:ImageAwesome>
 
                                         </Button>
-
                                     </StackPanel>
-
                                 </Grid>
 
 
                                 <!-- INFO -->
-                                <StackPanel Margin="14">
+                                <Grid Margin="14">
 
-                                    <TextBlock Text="{Binding Name}" FontSize="22" FontWeight="SemiBold" Foreground="White" TextWrapping="Wrap"/>
-
-                                    <TextBlock Text="{Binding Category}" Margin="0,4,0,0" FontSize="13" Foreground="#A0A0A0"/>
-
-                                    <TextBlock Text="{Binding Description}" Margin="0,10,0,0" FontSize="12" Foreground="#808080" TextWrapping="Wrap" MaxHeight="72" TextTrimming="CharacterEllipsis">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="25"/>
+                                        <RowDefinition Height="90"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="150"/>
+                                    </Grid.RowDefinitions>
+                                    
+                                    <TextBlock Text="{Binding Name}" Grid.Row="0" FontSize="22" FontWeight="SemiBold" Foreground="White" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{Binding Category}" Grid.Row="1" Margin="0,4,0,0" FontSize="13" Foreground="#A0A0A0"/>
+                                    <TextBlock Text="{Binding Description}" Grid.Row="2" FontSize="12" Foreground="#808080" TextWrapping="Wrap" MaxHeight="90" TextTrimming="CharacterEllipsis">
                                         <TextBlock.ToolTip>
                                             <ToolTip MaxWidth="300">
                                                 <TextBlock Text="{Binding Description}" TextWrapping="Wrap" Width="280"/>
                                             </ToolTip>
                                         </TextBlock.ToolTip>
                                     </TextBlock>
-
-                                    <TextBlock Margin="0,10,0,0" Foreground="#4ADE80" FontWeight="Bold">
-                                        <Run Text="{Binding Size}"/>
-                                        <Run Text=" GB"/>
-                                    </TextBlock>
-
+                                    <TextBlock Text="{Binding Size}" Grid.Row="3" Foreground="#4ADE80" FontWeight="Bold"/>
                                     <!-- BOTÕES -->
-                                    <StackPanel Margin="0,16,0,0">
+                                    <StackPanel Grid.Row="5" Margin="0,16,0,0">
 
                                         <!-- BOTÃO INSTALAR -->
                                         <Button Content="Instalar" Click="InstallGame_Click" Height="42" FontWeight="SemiBold" Background="#16A34A" Foreground="White" BorderThickness="0">
@@ -363,7 +366,7 @@
 
                                     </StackPanel>
 
-                                </StackPanel>
+                                </Grid>
 
                             </StackPanel>
 

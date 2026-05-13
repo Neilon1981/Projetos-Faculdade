@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Windows;
 using System.Security.Policy;
 using System.Text;
 
@@ -34,7 +35,7 @@ namespace Projeto_POO.Scripts.Plataform
                 }
                 else
                 {
-                    System.Windows.MessageBox.Show("Emulador n√£o encontrado na pasta Emulators\\SNES.");
+                    MessageBox.Show("Emulador n„o encontrado na pasta.");
                 }
             }
             else
