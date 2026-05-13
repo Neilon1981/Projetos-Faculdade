@@ -15,8 +15,8 @@ namespace Projeto_POO.Scripts
                 Name = "Super Mario World",
                 Category = "Aventura",
                 Description = "Super Mario World é um clássico do SNES em que Mario e Luigi exploram Dinosaur Land para salvar a Princesa Peach. O jogo introduz Yoshi e traz fases criativas cheias de segredos, sendo um dos plataformas mais influentes e lembrados dos videogames.",
-                RunPath = "https://emulatorgamer.com/pt/games/super-mario-world/play",
-                Size = "512 KB",
+                RunPath = @"Games\SNES\Super Mario World (USA).sfc",
+                Size = "380 KB",
                 CoverPath = "UI/Images/Games/SNES/supermarioworld.jpg",
             },
             new SuperNintendo
