@@ -1,0 +1,94 @@
+@page "/categories"
+@inject InventoryService InventoryService
+
+<div class="card" style="max-width: 800px; margin: 0 auto;">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem;">
+        <h2>Categorias de Itens</h2>
+        <a href="" class="btn btn-secondary">Voltar</a>
+    </div>
+
+    @if (items == null)
+    {
+        <p>Carregando itens...</p>
+    }
+    else if (!items.Any())
+    {
+        <div class="text-center" style="padding: 2rem 0;">
+            <p>Nenhum item encontrado.</p>
+            <a href="add-item" class="btn btn-primary" style="margin-top: 1rem;">Cadastrar o primeiro item</a>
+        </div>
+    }
+    else
+    {
+        var filteredItems = string.IsNullOrWhiteSpace(searchTerm) 
+            ? items 
+            : items.Where(i => i.Theme.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)).ToList();
+
+        var totalItems = filteredItems.Count;
+        var totalProducts = filteredItems.Sum(i => i.Quantity);
+
+        <div style="margin-bottom: 2rem;">
+            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--text-secondary);">Buscar e Filtrar por Tema</label>
+            <input type="text" class="form-control" placeholder="Digite o tema (ex: Fantasia)..." @bind="searchTerm" @bind:event="oninput" style="font-size: 1.1rem; padding: 1rem;" />
+        </div>
+
+        <div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
+            <div style="flex: 1; padding: 1.5rem; background: var(--bg-secondary); border-radius: 0.5rem; text-align: center; border: 1px solid var(--border-color);">
+                <h4 style="margin: 0; font-size: 0.875rem; color: var(--text-secondary);">Total de Itens (Diferenciados)</h4>
+                <p style="font-size: 2rem; font-weight: 700; margin: 0; color: var(--text-primary);">@totalItems</p>
+            </div>
+            <div style="flex: 1; padding: 1.5rem; background: var(--bg-secondary); border-radius: 0.5rem; text-align: center; border: 1px solid var(--border-color);">
+                <h4 style="margin: 0; font-size: 0.875rem; color: var(--text-secondary);">Total de Produtos (Quantidade)</h4>
+                <p style="font-size: 2rem; font-weight: 700; margin: 0; color: var(--accent-color);">@totalProducts</p>
+            </div>
+        </div>
+
+        var groupedItems = filteredItems.GroupBy(i => i.Theme);
+
+        if (!filteredItems.Any())
+        {
+            <div class="text-center" style="padding: 2rem 0; color: var(--text-secondary);">
+                <p>Nenhum item encontrado para o tema buscado.</p>
+            </div>
+        }
+        else
+        {
+            foreach (var group in groupedItems)
+            {
+                var groupItemsCount = group.Count();
+                var groupTotalQuantity = group.Sum(i => i.Quantity);
+
+                <div style="margin-bottom: 2rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1rem;">
+                        <h3 style="color: var(--accent-color); margin: 0;">
+                            @group.Key
+                        </h3>
+                        <span style="font-size: 0.875rem; color: var(--text-secondary); background: rgba(59, 130, 246, 0.1); padding: 0.25rem 0.75rem; border-radius: 1rem;">
+                            @groupItemsCount itens | @groupTotalQuantity unidades
+                        </span>
+                    </div>
+                    
+                    <ul class="item-list">
+                        @foreach (var item in group)
+                        {
+                            <li class="item-row">
+                                <span class="item-name">@item.Name</span>
+                                <span class="item-quantity">Qtd: @item.Quantity</span>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            }
+        }
+    }
+</div>
+
+@code {
+    private List<Item>? items;
+    private string searchTerm = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        items = await InventoryService.GetItemsAsync();
+    }
+}

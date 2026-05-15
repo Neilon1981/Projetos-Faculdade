@@ -1,0 +1,57 @@
+@page "/add-item"
+@inject InventoryService InventoryService
+@inject NavigationManager NavigationManager
+
+<div class="card" style="max-width: 600px; margin: 0 auto;">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem;">
+        <h2>Cadastrar Novo Item</h2>
+        <a href="" class="btn btn-secondary">Voltar</a>
+    </div>
+
+    <EditForm Model="@item" OnValidSubmit="HandleValidSubmit">
+        <DataAnnotationsValidator />
+
+        <div class="form-group">
+            <label for="name">Nome do Item</label>
+            <InputText id="name" @bind-Value="item.Name" class="form-control" required placeholder="Ex: Espada Longa" />
+        </div>
+
+        <div class="form-group">
+            <label for="theme">Tema/Categoria</label>
+            <InputText id="theme" @bind-Value="item.Theme" class="form-control" required placeholder="Ex: Fantasia, Sci-Fi..." />
+        </div>
+
+        <div class="form-group">
+            <label for="quantity">Quantidade</label>
+            <InputNumber id="quantity" @bind-Value="item.Quantity" class="form-control" min="1" required />
+        </div>
+
+        @if (showSuccess)
+        {
+            <div style="background-color: #065f46; color: #a7f3d0; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+                Item salvo com sucesso!
+            </div>
+        }
+
+        <button type="submit" class="btn btn-primary" style="width: 100%;">
+            Salvar Item
+        </button>
+    </EditForm>
+</div>
+
+@code {
+    private Item item = new Item { Quantity = 1 };
+    private bool showSuccess = false;
+
+    private async Task HandleValidSubmit()
+    {
+        await InventoryService.SaveItemAsync(item);
+        showSuccess = true;
+        item = new Item { Quantity = 1 }; // Reset form
+        
+        // Hide success message after 3 seconds
+        await Task.Delay(3000);
+        showSuccess = false;
+        StateHasChanged();
+    }
+}
